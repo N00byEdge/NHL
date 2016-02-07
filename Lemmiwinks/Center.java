@@ -61,7 +61,7 @@ public class Center extends BasePlayer {
 		
 		//if (abs(getTargetHeading-))
 		
-		setDebugPoint ( debX, debY, Color.BLUE );
-		showDebugPoint(true);
+		//setDebugPoint ( debX, debY, Color.BLUE );
+		//showDebugPoint(true);
     }
 }
