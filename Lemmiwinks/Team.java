@@ -19,7 +19,7 @@ public class Team implements ITeam {
     public Color getSecondaryTeamColor() { return Color.ORANGE; }
 
     // The team's LUCKY NUMBER!!
-    public int getLuckyNumber() { return 0; }
+    public int getLuckyNumber() { return 5; }
 
     // Get the goal keeper of the team.
     public GoalKeeper getGoalKeeper() { return new Goalie(); }
