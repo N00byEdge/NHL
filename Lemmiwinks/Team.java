@@ -10,13 +10,13 @@ public class Team implements ITeam {
     public String getShortName() { return "___"; }
 
     // Team Name
-    public String getTeamName() { return "Team Template"; }
+    public String getTeamName() { return "Lemmiwinks"; }
 
     // Team color; body color
-    public Color getTeamColor() { return Color.MAGENTA; }
+    public Color getTeamColor() { return Color.YELLOW; }
 
     // Team color; helmet color.
-    public Color getSecondaryTeamColor() { return Color.ORANGE; }
+    public Color getSecondaryTeamColor() { return Color.GREEN; }
 
     // The team's LUCKY NUMBER!!
     public int getLuckyNumber() { return 5; }
