@@ -1,4 +1,4 @@
-package teamTemplate;
+package Lemmiwinks;
 
 import java.util.Random;
 

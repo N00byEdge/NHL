@@ -1,4 +1,4 @@
-package teamTemplate;
+package Lemmiwinks;
 
 public class Center extends BasePlayer {
     // Number of center player
@@ -9,9 +9,7 @@ public class Center extends BasePlayer {
 
     // Center player's intelligence
     public void step() {
-	if (hasPuck())
-	    skate(GOAL_POSITION, MAX_SPEED);
-	else
-	    skate(0, getPuck().getY(), 1000);
+		if (hasPuck()) skate(GOAL_POSITION, MAX_SPEED);
+		else skate(0, getPuck().getY(), 1000);
     }
 }

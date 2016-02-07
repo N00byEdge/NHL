@@ -1,4 +1,4 @@
-package teamTemplate;
+package Lemmiwinks;
 
 public class Defender extends BasePlayer {
     // Number of defender

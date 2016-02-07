@@ -1,4 +1,4 @@
-package teamTemplate;
+package Lemmiwinks;
 
 public class Forward extends BasePlayer {
     // Number of forward

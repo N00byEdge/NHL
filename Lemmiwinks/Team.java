@@ -1,4 +1,4 @@
-package teamTemplate;
+package Lemmiwinks;
 
 import java.awt.Color;
 import hockey.api.GoalKeeper;

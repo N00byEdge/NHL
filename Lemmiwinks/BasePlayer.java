@@ -1,4 +1,4 @@
-package teamTemplate;
+package Lemmiwinks;
 
 import hockey.api.Position;
 import hockey.api.Player;
