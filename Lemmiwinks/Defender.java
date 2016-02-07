@@ -8,7 +8,7 @@ public class Defender extends BasePlayer {
     public String getName() { return "Defender"; }
 
     // Make left defender left handed, right defender right handed.
-    public boolean isLeftHanded() { return getIndex() == 1; }
+    public boolean isLeftHanded() { return getIndex() == 0; }
 
     // Initiate
     public void init() {
