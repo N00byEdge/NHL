@@ -1,6 +1,5 @@
 package Lemmiwinks;
 
-import java.awt.Toolkit;
 import hockey.api.*;
 
 public class Forward extends BasePlayer {
@@ -18,12 +17,10 @@ public class Forward extends BasePlayer {
 	public int getNumber() { return 5; }
     public String getName() { return "Forward"; }
     @Override public boolean isLeftHanded() {
-    	return idx == 1;
+    	return idx == 0;
     }
     public void step() {
-    	if(Math.random() < 0.01) Toolkit.getDefaultToolkit().beep();
-    	
-    	if(hasPuck() && Util.dist2(this, new Position(2000,-500)) < 500) {
+    	if(hasPuck() && Util.dist2(this, new Position(2000,-500)) < 1000) {
     		shoot(new Position(2600,0), 4444);
     	} else if(hasPuck() || other.hasPuck()) {
     		setAimOnStick(true);
