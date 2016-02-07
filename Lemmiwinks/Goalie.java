@@ -4,6 +4,7 @@ import java.util.Random;
 
 import hockey.api.GoalKeeper;
 import hockey.api.Position;
+import hockey.api.Util;
 
 public class Goalie extends GoalKeeper {
 	Random random; //Random number generator
@@ -23,7 +24,9 @@ public class Goalie extends GoalKeeper {
     public void init() { }
 
     // Face off
-    public void faceOff() { }
+    public void faceOff() {
+    	facePuck();
+    }
 
     // Called when the goalie is about to receive a penalty shot
     public void penaltyShot() { }
@@ -62,34 +65,14 @@ public class Goalie extends GoalKeeper {
     	//skate(-2550, 0, 200);
     	//turn(getPuck(), MAX_TURN_SPEED);
     	//glide((getY() - getPuck().getY()));
-    	int xdir = getGoalX() - getPuck().getX(), ydir = getGoalY() - getPuck().getY(), size = Math.max((int)Math.sqrt(xdir * xdir + ydir * ydir), 1);
+    	int xdir = getPuck().getX() - getGoalX(), ydir = getPuck().getY() - getGoalY(), size = Math.max((int)Math.sqrt(xdir * xdir + ydir * ydir), 1);
     	int normx = xdir / size, normy = ydir / size;
-    	int wantedx = getGoalX() + 50 * normx, wantedy = getGoalY() + 50 * normy;
-    	int speed = ((int)Math.sqrt(Math.pow((wantedx - getX()), 2) + Math.pow(wantedy - getY(), 2))) / 4;
+    	int wantedx = getGoalX() + 180 * Math.abs(normx), wantedy = getGoalY() + 180 * normy;
+    	int speed = Util.dist2(this, new Position(wantedx, wantedy)) / 4;
+    	speed = 200;
     	skate(wantedx, wantedy, speed);
     	setDebugPoint(wantedx, wantedy, java.awt.Color.GREEN);
     	showDebugPoint(true);
-    	/*
-    	int yPos = GOAL_POSITION.getY();
-    	if(getPuck().getY() < 0){
-    		yPos = Math.max(getPuck().getY(), GOAL_POSITION.getY() - 100);
-    	}else{
-    		yPos = Math.min(getPuck().getY(), GOAL_POSITION.getY() + 100);
-    	}
-    	skate(GOAL_POSITION.getX() + 50, yPos, 200);
-    	setDebugPoint(GOAL_POSITION.getX() + 50, yPos, java.awt.Color.GREEN);
-    	showDebugPoint(true);*/
-    	//glide(getY() - getPuck().getY());
-/*		int xdir = getPuck().getX() - GOAL_POSITION.getX(), ydir = getPuck().getY() - GOAL_POSITION.getY(), size = Math.max((int)Math.sqrt((double)xdir*xdir + ydir * ydir), 1);
-		int normalizedx = xdir / size, normalizedy = ydir / size;
-		skate(GOAL_POSITION.getX() + normalizedx * 50, GOAL_POSITION.getY() + normalizedy * 50, 200);
-  */  	//System.out.print(normalizedx);
-		/*xdir = getX() - GOAL_POSITION.getX() + normalizedx * 50;
-		ydir = getY() - GOAL_POSITION.getY() + normalizedy * 50;
-		size = Math.max((int)Math.sqrt((double)xdir*xdir + ydir * ydir), 1);
-		normalizedx = xdir / size;
-		normalizedy = ydir / size;
-		skate(normalizedx, normalizedy, MAX_SPEED);*/
 
     }
 }
