@@ -16,7 +16,7 @@ public class Team implements ITeam {
     public Color getTeamColor() { return Color.YELLOW; }
 
     // Team color; helmet color.
-    public Color getSecondaryTeamColor() { return Color.LIME; }
+    public Color getSecondaryTeamColor() { return Color.GREEN; }
 
     // The team's LUCKY NUMBER!!
     public int getLuckyNumber() { return 5; }
