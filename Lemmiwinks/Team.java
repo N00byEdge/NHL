@@ -13,7 +13,7 @@ public class Team implements ITeam {
 		}
 	};
     // Team Short Name.  Max 4 characters.
-    public String getShortName() { return "___"; }
+    public String getShortName() { return "5"; }
 
     // Team Name
     public String getTeamName() { return "Lemmiwinks"; }
