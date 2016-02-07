@@ -13,6 +13,7 @@ public class Fleer extends GoalKeeper {
 	}
 	
 	@Override public void step() {
+		setMessage("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 //		skate(0,0,9999);
 		skate(getX() + (getX() - getPuck().getX()), getY() + (getY() - getPuck().getY()), 99999);
 	}
