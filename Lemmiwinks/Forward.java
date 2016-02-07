@@ -2,7 +2,7 @@ package teamTemplate;
 
 public class Forward extends BasePlayer {
     // Number of forward
-    public int getNumber() { return 15; }
+    public int getNumber() { return 5; }
 
     // Name of forward
     public String getName() { return "Forward"; }

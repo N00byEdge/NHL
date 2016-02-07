@@ -2,7 +2,7 @@ package teamTemplate;
 
 public class Defender extends BasePlayer {
     // Number of defender
-    public int getNumber() { return 10; }
+    public int getNumber() { return 5; }
 
     // Name of defender
     public String getName() { return "Defender"; }

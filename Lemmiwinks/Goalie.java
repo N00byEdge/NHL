@@ -8,7 +8,7 @@ public class Goalie extends GoalKeeper {
     protected static final Position GOAL_POSITION = new Position(-2600, 0);
 
     // Number of the goalie.
-    public int getNumber() { return 1; }
+    public int getNumber() { return 5; }
 
     // Name of the goalie.
     public String getName() { return "The Goalie"; }
