@@ -1,9 +1,12 @@
 package teamTemplate;
 
+import java.util.Random;
+
 import hockey.api.GoalKeeper;
 import hockey.api.Position;
 
 public class Goalie extends GoalKeeper {
+	Random random; //Random number generator
     // Middle of our own goalcage, on the goal line
     protected static final Position GOAL_POSITION = new Position(-2600, 0);
 
@@ -27,7 +30,22 @@ public class Goalie extends GoalKeeper {
 
     // Intelligence of goalie.
     public void step() {
-	skate(GOAL_POSITION.getX() + 50, GOAL_POSITION.getY(), 200);
-	turn(getPuck(), MAX_TURN_SPEED);
+    	if(random == null){
+    		random = new Random();
+    	}
+    	skate(GOAL_POSITION.getX() + 50, GOAL_POSITION.getY(), 200);
+    	
+    	turn(getPuck(), MAX_TURN_SPEED);
+    	if(hasPuck()){
+    		shoot(3000, random.nextInt(1000) - 500);
+    		/*
+    		IPlayer best = null;
+    		for(int i = 0; i < 12; ++i){
+    			IPlayer cur = getPlayer(i);
+    			if(!cur.isOpponent()){
+    				
+    			}
+    		}*/
+    	}
     }
 }
