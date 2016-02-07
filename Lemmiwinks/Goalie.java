@@ -67,7 +67,11 @@ public class Goalie extends GoalKeeper {
     	//turn(getPuck(), MAX_TURN_SPEED);
     	//glide((getY() - getPuck().getY()));
     	Position dir = new Position(getPuck().getX() - getGoalX(), getPuck().getY() - getGoalY());
-    	double alpha = Math.atan(dir.getY() / dir.getX());
+    	float dirx = getPuck().getX() - getGoalX(), diry = getPuck().getY() - getGoalY();
+    	if(dirx == 0){
+    		dirx = 1;
+    	}
+    	double alpha = Math.atan(diry / dirx);
     	double y = Math.sin(alpha) * 100 + getGoalY(), x = Math.cos(alpha) * 100 + getGoalX();
     	//int speed = Util.solve(-2, 2, 0, false);
     	//int speed = (int)(2 * Math.pow(Util.dist(new Position((int)x, (int)y), this), 2));
