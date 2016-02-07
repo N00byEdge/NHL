@@ -46,20 +46,52 @@ public class Defender extends BasePlayer {
 		int puckY = getPuck().getY();
 
 		// Om spelaren har pucken
-		/*
 		if (hasPuck()){
-			// shoot(3000, random.nextInt(1000) - 500);
-
-			// Vem ska vi passa till
-			IPlayer best = null;
-			for(int i = 0; i < 12; ++i){
-				IPlayer cur = getPlayer(i);
-				if(!cur.isOpponent()){
-					
+			// Beräkna avståndet till närmaste fiende
+			double enemyDistance = 10000;
+			for (int i = 6; i < 12; ++i) {
+				// Go through all enemy players
+				double dist = Math.pow(Math.pow(getPlayer(i).getX()-getX(), 2)+Math.pow(getPlayer(i).getY()-getY(), 2), 0.5);
+				if (dist < enemyDistance) enemyDistance = dist;
+			}
+			// Hitta till närmaste forward/center
+			double bestDistance = 10000;
+			int bestPlayer = 5;
+			for (int i = 3; i < 6; ++i) {
+				// Go through all offensive friendly players
+				double dist = Math.pow(Math.pow(getPlayer(i).getX()-getX(), 2)+Math.pow(getPlayer(i).getY()-getY(), 2), 0.5);
+				if (dist < enemyDistance) {
+					bestDistance = dist;
+					bestPlayer = i;
 				}
 			}
+			shoot(getPlayer(bestPlayer), 800);
+
+
+
+			// 	// Om vi är närmast, gå på med den närmaste och retirera med den andra
+			// 	// Hitta den närmaste spelaren i vårt lag
+			// 	int bestPlayer = getIndex();
+			// 	double bestDistance = 10000;
+			// 	for (int i = 0; i < 6; ++i) {
+			// 		// Go through all players
+			// 		double dist = Math.pow(Math.pow(getPlayer(i).getX()-puckX, 2)+Math.pow(getPlayer(i).getY()-puckY, 2), 0.5);
+			// 		if (dist < bestDistance) {
+			// 			bestDistance = dist;
+			// 			bestPlayer = i;
+			// 		}
+			// 	}
+			// 	// Om vi är närmast
+			// 	if (bestPlayer == getIndex()) skate(getPuck(), MAX_SPEED);
+			// // Vem ska vi passa till
+			// IPlayer best = null;
+			// for(int i = 0; i < 12; ++i){
+			// 	IPlayer cur = getPlayer(i);
+			// 	if(!cur.isOpponent()){
+					
+			// 	}
+			// }
 		}
-		*/
 
 
 		// Om pucken finns på vår sida
@@ -154,26 +186,32 @@ public class Defender extends BasePlayer {
 		// Den försvarare som är på motsatta sidan från pucken hänger lite längre bak
 
 		else {
-			if (puckY < 0) {
-				if (getIndex() == 1) {
-					if (getX() < 450) skate (500, puckY, 500);
-					else turn(getPuck(), 500);
-				}
-				else {
-					if (getX() < 450 - 500) skate (500 - 500, 0, 500);
-					else turn(getPuck(), 500);
-				}
+			if (getX() > 500) {
+				if (puckY * getY() >= 0) skate (400, puckY, 1000);
+				else skate (400, 0, 1000);
 			}
-			else {
-				if (getIndex() == 1) {
-					if (getX() < 450 - 500) skate (500 - 500, 0, 500);
-					else turn(getPuck(), 500);
-				}
-				else {
-					if (getX() < 450) skate (500, puckY, 500);
-					else turn(getPuck(), 500);
-				}
-			}
+			else turn(getPuck(), 500);
+			// if (puckY < 0) {
+			// 	if (puckY * getY() >= 0) 
+			// 	if (getIndex() == 1) {
+			// 		if (getX() < 450) skate (500, puckY, 500);
+			// 		else turn(getPuck(), 500);
+			// 	}
+			// 	else {
+			// 		if (getX() < 450 - 500) skate (500 - 500, 0, 500);
+			// 		else turn(getPuck(), 500);
+			// 	}
+			// }
+			// else {
+			// 	if (getIndex() == 1) {
+			// 		if (getX() < 450 - 500) skate (500 - 500, 0, 500);
+			// 		else turn(getPuck(), 500);
+			// 	}
+			// 	else {
+			// 		if (getX() < 450) skate (500, puckY, 500);
+			// 		else turn(getPuck(), 500);
+			// 	}
+			// }
 		}
 	}
 }

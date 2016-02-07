@@ -47,7 +47,7 @@ public class Goalie extends GoalKeeper {
     	}else{
     		//The puck is behind us.
     		//Get in front of the goal
-        	skate(GOAL_POSITION.getX() + 50, GOAL_POSITION.getY(), 200);
+        	skate(GOAL_POSITION.getX() + 50, GOAL_POSITION.getY(), calcSpeed(new Position(getX(), getY()), new Position(GOAL_POSITION.getX() + 50, GOAL_POSITION.getY()), 4));
     	}
     }
     public int getGoalX(){
@@ -57,9 +57,11 @@ public class Goalie extends GoalKeeper {
     	return 0;
     }
     
-    
+    public int calcSpeed(Position current, Position wanted, int modifier){
+    	return (int)(Util.dist(current, wanted) * modifier);
+    }
     public void facePuck(){
-    	//turn(getPuck(), MAX_TURN_SPEED);
+    	turn(getPuck(), MAX_TURN_SPEED);
     	//Glide in a clever way here
     	
     	//skate(GOAL_POSITION.getX() + 50, GOAL_POSITION.getY(), 200);
@@ -67,14 +69,20 @@ public class Goalie extends GoalKeeper {
     	//turn(getPuck(), MAX_TURN_SPEED);
     	//glide((getY() - getPuck().getY()));
     	Position dir = new Position(getPuck().getX() - getGoalX(), getPuck().getY() - getGoalY());
-    	double alpha = Math.atan(dir.getY() / dir.getX());
+    	float dirx = getPuck().getX() - getGoalX(), diry = getPuck().getY() - getGoalY();
+    	if(dirx == 0){
+    		dirx = 1;
+    	}
+    	double alpha = Math.atan(diry / dirx);
     	double y = Math.sin(alpha) * 100 + getGoalY(), x = Math.cos(alpha) * 100 + getGoalX();
     	//int speed = Util.solve(-2, 2, 0, false);
-    	int speed = (int)(2 * Math.pow(Util.dist(new Position((int)x, (int)y), this), 2));
+    	//int speed = (int)(2 * Math.pow(Util.dist(new Position((int)x, (int)y), this), 2));
+    	//int speed = (int)Util.dist(new Position((int)x, (int)y), this) * 3;
+    	int speed = calcSpeed(new Position(getX(), getY()), new Position((int)x, (int)y), 3);
     	skate((int)(x), (int)(y), speed);
-    	setDebugPoint((int)(x), (int)(y), java.awt.Color.GREEN);
+    	/*setDebugPoint((int)(x), (int)(y), java.awt.Color.GREEN);
     	showDebugPoint(true);
-    	setMessage(Integer.toString(speed));
+    	setMessage(Integer.toString(speed));*/
     	/*
     	int xdir = getPuck().getX() - getGoalX(), ydir = getPuck().getY() - getGoalY(), size = Math.max((int)Math.sqrt(xdir * xdir + ydir * ydir), 1);
     	int normx = xdir / size, normy = ydir / size;
