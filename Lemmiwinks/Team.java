@@ -29,7 +29,8 @@ public class Team implements ITeam {
     // Get the goal keeper of the team.
     public GoalKeeper getGoalKeeper() { return (GoalKeeper)players[0]; }
 
-    public static Player[] players = {new Fleer(), new Fleer(), new Fleer(), new Fleer(), new Fleer(), new Fleer()};
+    public static Player[] players = {new Goalie(), new Defender(), new Defender(), new Forward(0), new Forward(1), new Center()};
+	//public static Player[] players = { new Center ( ), new Center ( ), new Center ( ), new Center ( ), new Center ( ), new Center ( ), new Center ( ) };
     // Get the other five players of the team.
     public Player getPlayer(int index) {
     	return players[index];
