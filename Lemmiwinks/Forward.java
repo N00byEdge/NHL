@@ -13,22 +13,19 @@ public class Forward extends BasePlayer {
     	other = getPlayer(6-idx);
     }
 
-	public int getNumber() { return Integer.MIN_VALUE; }
+	public int getNumber() { return 0; }
     public String getName() { return "Forward"; }
     @Override public boolean isLeftHanded() {
     	return idx == 0;
     }
     public void step() {
+    	setAimOnStick(true);
     	if(hasPuck() && Util.dist(this, getPlayer(5)) < 1000) {
-    		setAimOnStick(true);
     		shoot(getPlayer(5), 700);
     		setMessage("Passing");
     	} else if(hasPuck()) {
-    		setAimOnStick(true);
-    		skateTo(getPlayer(5));
     		setMessage("Getting into position");
     	} else {
-    		setAimOnStick(true);
     		skateTo(getPuck());
     		setMessage("Chasing puck");
     	}
