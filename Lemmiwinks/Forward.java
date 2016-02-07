@@ -5,7 +5,6 @@ import hockey.api.*;
 public class Forward extends BasePlayer {
     int idx;
     IPlayer other;
-	private int tick;
 
     public Forward(int i) {
     	idx = i;
@@ -14,26 +13,32 @@ public class Forward extends BasePlayer {
     	other = getPlayer(6-idx);
     }
 
-	public int getNumber() { return 5; }
+	public int getNumber() { return Integer.MAX_VALUE; }
     public String getName() { return "Forward"; }
     @Override public boolean isLeftHanded() {
     	return idx == 0;
     }
     public void step() {
-    	if(hasPuck() && Util.dist2(this, new Position(2000,-500)) < 1000) {
-    		shoot(new Position(2600,0), 4444);
-    	} else if(hasPuck() || other.hasPuck()) {
+    	if(hasPuck() && getX() < 1000) {
+    		setAimOnStick(false);
+    		shoot(GOAL_POSITION, 4444);
+    		setMessage("Shooting");
+    	} else if(hasPuck()) {
     		setAimOnStick(true);
-    		skate(new Position(2000, -500), MAX_SPEED);
+    		skateTo(new Position(getX(),-1500));
+    		setMessage("Getting into position");
     	} else {
     		setAimOnStick(true);
-    		int dist = (int)Util.dist(this, getPuck());
-    		int spd = 1000;
-    		if(dist < 200) spd = 300;
-    		if(dist < 500) spd = 800;
-    		if(dist > 2000) spd = MAX_SPEED;
-    		skate(getPuck(), spd);
+    		skateTo(getPuck());
+    		setMessage("Chasing puck");
     	}
-    	
     }
+	private void skateTo(IObject goal) {
+		int dist = (int)Util.dist(this, goal);
+		int spd = 1000;
+		if(dist < 200) spd = 300;
+		if(dist < 500) spd = 800;
+		if(dist > 2000) spd = MAX_SPEED;
+		skate(goal, spd);
+	}
 }
