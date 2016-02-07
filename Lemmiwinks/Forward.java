@@ -25,7 +25,7 @@ public class Forward extends BasePlayer {
     		setMessage("Shooting");
     	} else if(hasPuck()) {
     		setAimOnStick(true);
-    		skateTo(new Position(getX(),-1500));
+    		skateTo(new Position(0,-1500));
     		setMessage("Getting into position");
     	} else {
     		setAimOnStick(true);
