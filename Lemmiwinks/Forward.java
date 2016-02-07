@@ -13,19 +13,19 @@ public class Forward extends BasePlayer {
     	other = getPlayer(6-idx);
     }
 
-	public int getNumber() { return Integer.MAX_VALUE; }
+	public int getNumber() { return Integer.MIN_VALUE; }
     public String getName() { return "Forward"; }
     @Override public boolean isLeftHanded() {
     	return idx == 0;
     }
     public void step() {
-    	if(hasPuck() && getX() < 1000) {
+    	if(hasPuck() && Util.dist(this, getPlayer(5)) < 1000) {
     		setAimOnStick(false);
-    		shoot(GOAL_POSITION, 4444);
-    		setMessage("Shooting");
+    		shoot(GOAL_POSITION, 700);
+    		setMessage("Passing");
     	} else if(hasPuck()) {
     		setAimOnStick(true);
-    		skateTo(new Position(0,-1500));
+    		skateTo(getPlayer(5));
     		setMessage("Getting into position");
     	} else {
     		setAimOnStick(true);
