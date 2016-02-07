@@ -20,8 +20,8 @@ public class Forward extends BasePlayer {
     }
     public void step() {
     	if(hasPuck() && Util.dist(this, getPlayer(5)) < 1000) {
-    		setAimOnStick(false);
-    		shoot(GOAL_POSITION, 700);
+    		setAimOnStick(true);
+    		shoot(getPlayer(5), 700);
     		setMessage("Passing");
     	} else if(hasPuck()) {
     		setAimOnStick(true);
