@@ -1,15 +1,22 @@
 package Lemmiwinks;
 
 import java.awt.Color;
-import java.util.Random;
 import hockey.api.GoalKeeper;
 import hockey.api.Player;
 import hockey.api.ITeam;
 
 public class Team implements ITeam {
+	static int n = 0;
 	public static final Color RAND_COLOR = new Color(0,0,0,0) {
 		@Override public int getRGB() {
-			return new Random().nextInt() | 0xFF000000;
+			n++;
+			return Color.HSBtoRGB((float)n/3000, 1, 1) | 0xFF000000;
+//			return new Random().nextInt() | 0xFF000000;
+		}
+	};
+	public static final Color RAND_COLOR_2 = new Color(0,0,0,0) {
+		public int getRGB() {
+			return RAND_COLOR.getRGB() ^ 0xFFFFFF;
 		}
 	};
     // Team Short Name.  Max 4 characters.
@@ -22,7 +29,7 @@ public class Team implements ITeam {
     public Color getTeamColor() { return RAND_COLOR; }
 
     // Team color; helmet color.
-    public Color getSecondaryTeamColor() { return RAND_COLOR; }
+    public Color getSecondaryTeamColor() { return RAND_COLOR_2; }
 
     // The team's LUCKY NUMBER!!
     public int getLuckyNumber() { throw new UnsupportedOperationException(); } //This isn't ever called, so...
