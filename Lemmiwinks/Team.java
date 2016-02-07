@@ -28,17 +28,11 @@ public class Team implements ITeam {
     public int getLuckyNumber() { throw new UnsupportedOperationException(); } //This isn't ever called, so...
 
     // Get the goal keeper of the team.
-    public GoalKeeper getGoalKeeper() { return new Goalie(); }
+    public GoalKeeper getGoalKeeper() { return (GoalKeeper)players[0]; }
 
+    public static Player[] players = {new Goalie(), new Defender(), new Defender(), new Forward(0), new Forward(1), new Center()};
     // Get the other five players of the team.
     public Player getPlayer(int index) {
-	switch (index) {
-	case 1: return new Defender(); // Left defender
-	case 2: return new Defender(); // Right defender
-	case 3: return new Forward(0); // Left forward
-	case 4: return new Forward(1); // Right forward
-	case 5: return new Center(); // Center
-	}
-	return null;
+    	return players[index];
     }
 }
