@@ -1,19 +1,42 @@
 package Lemmiwinks;
 
+import java.awt.Toolkit;
+import hockey.api.*;
+
 public class Forward extends BasePlayer {
-    // Number of forward
-    public int getNumber() { return 5; }
+    int idx;
+    IPlayer other;
+	private int tick;
 
-    // Name of forward
+    public Forward(int i) {
+    	idx = i;
+	}
+    @Override public void init() {
+    	other = getPlayer(6-idx);
+    }
+
+	public int getNumber() { return 5; }
     public String getName() { return "Forward"; }
-
-    // Intelligence of forward
+    @Override public boolean isLeftHanded() {
+    	return idx == 1;
+    }
     public void step() {
-	if (hasPuck()) {
-	    shoot(getPlayer(5), 4444); // pass center player
-	}
-	else {
-	    skate(getPuck(), MAX_SPEED); // get the puck
-	}
+    	if(Math.random() < 0.01) Toolkit.getDefaultToolkit().beep();
+    	
+    	if(hasPuck() && Util.dist2(this, new Position(2000,-500)) < 500) {
+    		shoot(new Position(2600,0), 4444);
+    	} else if(hasPuck() || other.hasPuck()) {
+    		setAimOnStick(true);
+    		skate(new Position(2000, -500), MAX_SPEED);
+    	} else {
+    		setAimOnStick(true);
+    		int dist = (int)Util.dist(this, getPuck());
+    		int spd = 1000;
+    		if(dist < 200) spd = 300;
+    		if(dist < 500) spd = 800;
+    		if(dist > 2000) spd = MAX_SPEED;
+    		skate(getPuck(), spd);
+    	}
+    	
     }
 }
