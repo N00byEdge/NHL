@@ -10,7 +10,7 @@ public class Team implements ITeam {
 	public static final Color RAND_COLOR = new Color(0,0,0,0) {
 		@Override public int getRGB() {
 			n++;
-			return Color.HSBtoRGB((float)n/3000, 1, 1) | 0xFF000000;
+			return Color.HSBtoRGB((float)Math.random(), 1, 1) | 0xFF000000;
 //			return new Random().nextInt() | 0xFF000000;
 		}
 	};
