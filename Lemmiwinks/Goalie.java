@@ -38,11 +38,10 @@ public class Goalie extends GoalKeeper {
     	}
     	//skate(GOAL_POSITION.getX() + 50, GOAL_POSITION.getY(), 200);
     	
-    	turn(getPuck(), MAX_TURN_SPEED);
+    	//turn(getPuck(), MAX_TURN_SPEED);
     	if(hasPuck()){
     		shoot(3000, random.nextInt(1000) - 500);
-    	}
-    	if(getPuck().getX() > -2600){
+    	}else if(getPuck().getX() > -2650){
     		//Goalie should be inbetween the puck and the goal and act as our brick wall
     		facePuck();
     	}else{
@@ -57,22 +56,32 @@ public class Goalie extends GoalKeeper {
     public int getGoalY(){
     	return 0;
     }
+    
+    
     public void facePuck(){
-    	turn(getPuck(), MAX_TURN_SPEED);
+    	//turn(getPuck(), MAX_TURN_SPEED);
     	//Glide in a clever way here
     	
     	//skate(GOAL_POSITION.getX() + 50, GOAL_POSITION.getY(), 200);
     	//skate(-2550, 0, 200);
     	//turn(getPuck(), MAX_TURN_SPEED);
     	//glide((getY() - getPuck().getY()));
+    	Position dir = new Position(getPuck().getX() - getGoalX(), getPuck().getY() - getGoalY());
+    	double alpha = Math.atan(dir.getY() / dir.getX());
+    	double y = Math.sin(alpha) * 100 + getGoalY(), x = Math.cos(alpha) * 100 + getGoalX();
+    	//int speed = Util.solve(-2, 2, 0, false);
+    	int speed = (int)(2 * Math.pow(Util.dist(new Position((int)x, (int)y), this), 2));
+    	skate((int)(x), (int)(y), speed);
+    	setDebugPoint((int)(x), (int)(y), java.awt.Color.GREEN);
+    	showDebugPoint(true);
+    	setMessage(Integer.toString(speed));
+    	/*
     	int xdir = getPuck().getX() - getGoalX(), ydir = getPuck().getY() - getGoalY(), size = Math.max((int)Math.sqrt(xdir * xdir + ydir * ydir), 1);
     	int normx = xdir / size, normy = ydir / size;
     	int wantedx = getGoalX() + 180 * Math.abs(normx), wantedy = getGoalY() + 180 * normy;
     	int speed = Util.dist2(this, new Position(wantedx, wantedy)) / 4;
     	speed = 200;
     	skate(wantedx, wantedy, speed);
-    	setDebugPoint(wantedx, wantedy, java.awt.Color.GREEN);
-    	showDebugPoint(true);
-
+*/
     }
 }
