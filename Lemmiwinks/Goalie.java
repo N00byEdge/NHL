@@ -70,11 +70,12 @@ public class Goalie extends GoalKeeper {
     	double alpha = Math.atan(dir.getY() / dir.getX());
     	double y = Math.sin(alpha) * 100 + getGoalY(), x = Math.cos(alpha) * 100 + getGoalX();
     	//int speed = Util.solve(-2, 2, 0, false);
-    	int speed = (int)(2 * Math.pow(Util.dist(new Position((int)x, (int)y), this), 2));
+    	//int speed = (int)(2 * Math.pow(Util.dist(new Position((int)x, (int)y), this), 2));
+    	int speed = (int)Util.dist(new Position((int)x, (int)y), this) * 3;
     	skate((int)(x), (int)(y), speed);
-    	setDebugPoint((int)(x), (int)(y), java.awt.Color.GREEN);
+    	/*setDebugPoint((int)(x), (int)(y), java.awt.Color.GREEN);
     	showDebugPoint(true);
-    	setMessage(Integer.toString(speed));
+    	setMessage(Integer.toString(speed));*/
     	/*
     	int xdir = getPuck().getX() - getGoalX(), ydir = getPuck().getY() - getGoalY(), size = Math.max((int)Math.sqrt(xdir * xdir + ydir * ydir), 1);
     	int normx = xdir / size, normy = ydir / size;
